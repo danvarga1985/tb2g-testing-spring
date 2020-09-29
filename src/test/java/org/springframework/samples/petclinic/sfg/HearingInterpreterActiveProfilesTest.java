@@ -4,20 +4,15 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// Can use just one annotation as opposed to two (commented out)
-@SpringJUnitConfig(classes = HearingInterpreterTest.TestConfig.class)
-@ActiveProfiles("component-scan")
-//@ExtendWith(SpringExtension.class)
-//@ContextConfiguration(classes = {BaseConfig.class, HelloConfig.class})
-class HearingInterpreterTest {
+@ActiveProfiles("world")
+@SpringJUnitConfig(classes = HearingInterpreterActiveProfilesTest.TestConfig.class)
+public class HearingInterpreterActiveProfilesTest {
 
-    @Profile("component-scan")
     @Configuration
     @ComponentScan("org.springframework.samples.petclinic.sfg")
     static class TestConfig {
@@ -30,6 +25,6 @@ class HearingInterpreterTest {
     void whatIHeard() {
         String word = hearingInterpreter.whatIHeard();
 
-        assertEquals("Hello", word);
+        assertEquals("World", word);
     }
 }
