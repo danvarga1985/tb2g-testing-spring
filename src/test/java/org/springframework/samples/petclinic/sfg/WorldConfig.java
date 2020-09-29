@@ -4,10 +4,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class BaseConfig {
+public class WorldConfig {
 
     @Bean
-    HearingInterpreter hearingInterpreter(WordProducer wordProducer) {
-        return new HearingInterpreter(wordProducer);
+    WorldWordProducer WorldWordProducer() {
+        return new WorldWordProducer();
     }
 }
