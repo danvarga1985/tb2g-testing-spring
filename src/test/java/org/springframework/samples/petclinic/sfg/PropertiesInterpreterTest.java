@@ -5,13 +5,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ActiveProfiles("world")
-@SpringJUnitConfig(classes = HearingInterpreterActiveProfilesTest.TestConfig.class)
-public class HearingInterpreterActiveProfilesTest {
+@ActiveProfiles("externalized")
+@SpringJUnitConfig(classes = PropertiesInterpreterTest.TestConfig.class)
+@TestPropertySource("classpath:world.properties")
+public class PropertiesInterpreterTest {
 
     @Configuration
     @ComponentScan("org.springframework.samples.petclinic.sfg")
@@ -26,6 +28,6 @@ public class HearingInterpreterActiveProfilesTest {
     void whatIHeard() {
         String word = hearingInterpreter.whatIHeard();
 
-        assertEquals("World", word);
+        assertEquals("wOrlD", word);
     }
 }
